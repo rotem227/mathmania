@@ -62,7 +62,7 @@ const Settings: FC = () => {
                                 value={state.range[0]}
                                 onChange={(e) => handleRange('min', e.target.value)}
                                 type="number"
-                                className="input input-bordered join-item"
+                                className="input input-bordered join-item input-md w-full max-w-xs"
                                 placeholder="Min number"
                             />
                         </div>
@@ -73,7 +73,7 @@ const Settings: FC = () => {
                                 value={state.range[1]}
                                 onChange={(e) => handleRange('max', e.target.value)}
                                 type="number"
-                                className="input input-bordered join-item"
+                                className="input input-bordered join-item input-md w-full max-w-xs"
                                 placeholder="Max number"
                             />
                         </div>

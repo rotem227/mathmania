@@ -32,7 +32,7 @@ const AppBar: FC = () => {
                 <input id="my-drawer" type="checkbox" className="drawer-toggle" ref={drawerCheckboxRef} />
                 <div className="drawer-side z-[999]">
                     <div className="relative h-full">
-                        <label htmlFor="my-drawer" className="btn btn-md btn-circle btn-ghost absolute right-2 top-2">✕</label>
+                        <label htmlFor="my-drawer" className="btn btn-lg btn-circle btn-ghost absolute right-2 top-2">✕</label>
                         <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
                         <ul className="menu p-4 w-72 min-h-full bg-base-200 text-base-content pt-12">
                             <li className="text-lg"><Link to="/" onClick={handleNavItemClick}>Home</Link></li>
