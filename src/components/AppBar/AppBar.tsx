@@ -36,7 +36,7 @@ const AppBar: FC = () => {
                         <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
                         <ul className="menu p-4 w-72 min-h-full bg-base-200 text-base-content pt-12">
                             <li className="text-lg"><Link to="/" onClick={handleNavItemClick}>Home</Link></li>
-                            <li className="text-lg"><Link to="/practice" onClick={handleNavItemClick}>Practice</Link></li>
+                            <li className="text-lg"><Link to="/settings" onClick={handleNavItemClick}>Settings</Link></li>
                         </ul>
                     </div>
                 </div>

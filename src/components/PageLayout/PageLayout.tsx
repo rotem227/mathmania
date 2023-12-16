@@ -6,7 +6,7 @@ const PageLayout: FC<JSX.IntrinsicElements['div']> = ({ children }) => {
         <div>
             <AppBar />
 
-            <div className="pt-6 px-6 max-w-lg m-auto">
+            <div className="pt-6 px-6 max-w-xl m-auto">
                 {children}
             </div>
         </div>
