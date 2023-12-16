@@ -61,14 +61,11 @@ const getDivisionOrderedRandomNumbers = (from: number, to: number) => {
     return [result, randomPair[randomNumbersIndex]];
 };
 
-export const generateExcercise = ({ range, operators = [] }: ExcerciseConfig) => {
-    const selectedoperators = operators.map((key) => operatorsData[key]);
+const { add, substract, multiply, divide } = operators;
 
-    if (selectedoperators.length === 0) {
-        return;
-    }
-
+export const generateExcercise = ({ range, operators = [add, substract, multiply, divide] }: ExcerciseConfig) => {
     const [minNumber, maxNumber] = range.sort();
+    const selectedoperators = operators.map((key) => operatorsData[key]);
     const operator = getRandomOperator(selectedoperators);
     const isDivision = operator.symbol === operatorsData.divide.symbol;
     // Division require specific numbers for NOT getting decimal point results (e.g. 7 / 5).

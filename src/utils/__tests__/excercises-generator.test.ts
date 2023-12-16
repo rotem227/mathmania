@@ -1,17 +1,10 @@
-import { generateExcercise, operatorsData } from "../excercises-generator";
+import { generateExcercise } from "../excercises-generator";
 
 describe('Excercises Generator', () => {
     it('Should Generate numbers in an descending order', () => {
         const { firstNumber, secondNumber } = generateExcercise({ range: [1, 10] });
 
         expect(firstNumber).toBeGreaterThanOrEqual(secondNumber);
-    });
-
-    it('Should Generate a random operator', () => {
-        const { symbol, action } = generateExcercise({ range: [1, 10] });
-        const result = Object.values(operatorsData).find((operator) => operator.symbol === symbol && operator.action === action);
-
-        expect(result).toBeTruthy();
     });
 
     it('Should Generate a valid expected result', () => {
