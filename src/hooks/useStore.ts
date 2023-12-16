@@ -16,22 +16,22 @@ const getInitialValue = () => {
     return {
         operators: [add, substract, multiply, divide],
         range: [1, 3]
-    };
+    } as StoreData;
 };
 
 const useStore = () => {
-    const [state, setState] = useState<StoreData>(getInitialValue);
+    const store = useState<StoreData>(getInitialValue);
 
     useEffect(() => {
-        setStorageData(state);
-    }, [state]);
+        setStorageData(store[0]);
+    }, [store[0]]);
 
-    return [state, setState];
+    return store;
 };
 
 const STORAGE_KEY = 'mathmania-app';
 
-function setStorageData(newData) {
+function setStorageData(newData: StoreData) {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(newData));
 };
 

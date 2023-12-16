@@ -17,11 +17,11 @@ export const operatorsData = {
     },
 } as const;
 
-type OperatorKey = keyof typeof operatorsData;
+export type OperatorKey = keyof typeof operatorsData;
 
-type OperatorData = typeof operatorsData[OperatorKey];
+export type OperatorData = typeof operatorsData[OperatorKey];
 
-type Operators = {
+export type Operators = {
     [key in OperatorKey]: key;
 }
 
@@ -32,7 +32,7 @@ export const operators = Object.keys(operatorsData).reduce((data, key) => {
 
 export type ExcerciseConfig = {
     range: [number, number];
-    operators?: OperatorKey[];
+    operators: OperatorKey[];
 }
 
 const getRandomOperator = (allowedOperators: OperatorData[]) => {

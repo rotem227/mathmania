@@ -2,9 +2,11 @@ import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import useStore from '../../hooks/useStore';
-import { operators } from '../../utils/excercises-generator';
+import { operators, OperatorKey } from '../../utils/excercises-generator';
 
-const availableOperators = Object.keys(operators);
+const { add, substract, multiply, divide } = operators;
+
+const allOperators = [add, substract, multiply, divide];
 
 const rangeIndexesMap = {
     'min': 0,
@@ -15,7 +17,7 @@ const Settings: FC = () => {
     const navigate = useNavigate();
     const [state, setState] = useStore();
 
-    const handleOperator = (operator) => {
+    const handleOperator = (operator: OperatorKey) => {
         setState((prev) => {
             const newState = { ...prev };
 
@@ -82,7 +84,7 @@ const Settings: FC = () => {
             <div className="flex flex-col gap-4">
                 <h3>Operators:</h3>
                 {
-                    availableOperators.map((operator) => (
+                    allOperators.map((operator) => (
                         <div className="flex gap-4" key={operator}>
                             <input
                                 id={operator}
