@@ -1,8 +1,9 @@
 import { FC } from 'react';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import Intro from './pages/Intro';
+import Home from './pages/home';
 import Practice from './pages/practice';
+import Settings from './pages/settings';
 
 import PageLayout from "./components/PageLayout";
 
@@ -11,7 +12,7 @@ const router = createBrowserRouter([
     path: "/",
     element: (
       <PageLayout>
-        <Intro />
+        <Home />
       </PageLayout>
     ),
   },
@@ -20,6 +21,14 @@ const router = createBrowserRouter([
     element: (
       <PageLayout>
         <Practice />
+      </PageLayout>
+    ),
+  },
+  {
+    path: '/settings',
+    element: (
+      <PageLayout>
+        <Settings />
       </PageLayout>
     ),
   },
