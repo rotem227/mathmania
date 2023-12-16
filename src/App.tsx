@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Intro from './pages/Intro';
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
   },
 ]);
 
-function App() {
+const App: FC = () => {
   return (
     <RouterProvider router={router} />
   )

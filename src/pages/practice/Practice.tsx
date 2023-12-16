@@ -1,10 +1,11 @@
-import { useState, useRef } from 'react';
+import { FC, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import clsx from 'clsx';
 
 import useExcercises, { operatorsData } from "../../hooks/useExcercises";
 import Keys, { KeyValue, SUBMIT_VALUE, DELETE_VALUE, NEGATIVE_VALUE } from './components/Keys';
 
-const Practice = () => {
+const Practice: FC = () => {
     const navigate = useNavigate();
     const { excercise, index, total, next } = useExcercises({ range: [1, 10], operators: [operatorsData.add] });
     const { firstNumber, secondNumber, symbol, expected } = excercise;
@@ -108,11 +109,10 @@ const Practice = () => {
                                 ref={resultRef}
                                 type="text"
                                 placeholder="?"
-                                className={[
+                                className={clsx([
                                     'input',
                                     'input-bordered',
                                     'w-full',
-                                    'max-w-xs',
                                     'text-center',
                                     'bg-base-300',
                                     'text-xl',
@@ -120,7 +120,7 @@ const Practice = () => {
                                     isWrong ? 'text-error' : 'text-info',
                                     isRevealed && 'border-secondary',
                                     isRevealed && 'text-secondary'
-                                ].filter(Boolean).join(' ')}
+                                ])}
                                 readOnly={true}
                             />
                         </div>

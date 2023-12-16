@@ -1,16 +1,12 @@
-import { ReactNode } from "react";
-import Navbar from "../Navbar";
+import { FC } from "react";
+import AppBar from "../AppBar";
 
-type Props = {
-    children: ReactNode;
-}
-
-function PageLayout({ children }: Props) {
+const PageLayout: FC<JSX.IntrinsicElements['div']> = ({ children }) => {
     return (
         <div>
-            <Navbar />
+            <AppBar />
 
-            <div className="pt-6 px-6">
+            <div className="pt-6 px-6 max-w-lg m-auto">
                 {children}
             </div>
         </div>

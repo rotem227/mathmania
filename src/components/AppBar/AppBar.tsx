@@ -1,10 +1,7 @@
-import { useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { FC, useRef } from 'react';
+import { Link } from 'react-router-dom';
 
-
-function Navbar() {
-    const navigate = useNavigate();
-
+const AppBar: FC = () => {
     const drawerCheckboxRef = useRef<HTMLInputElement>(null);
 
     const handleNavItemClick = () => drawerCheckboxRef.current!.checked = false;
@@ -38,8 +35,8 @@ function Navbar() {
                         <label htmlFor="my-drawer" className="btn btn-md btn-circle btn-ghost absolute right-2 top-2">✕</label>
                         <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
                         <ul className="menu p-4 w-72 min-h-full bg-base-200 text-base-content pt-12">
-                            <li className="text-lg"><Link to="/practice" onClick={handleNavItemClick}>Practic</Link></li>
-                            <li className="text-lg"><Link to="/" onClick={handleNavItemClick}>Settings</Link></li>
+                            <li className="text-lg"><Link to="/" onClick={handleNavItemClick}>Home</Link></li>
+                            <li className="text-lg"><Link to="/practice" onClick={handleNavItemClick}>Practice</Link></li>
                         </ul>
                     </div>
                 </div>
@@ -48,4 +45,4 @@ function Navbar() {
     );
 }
 
-export default Navbar;
+export default AppBar;
