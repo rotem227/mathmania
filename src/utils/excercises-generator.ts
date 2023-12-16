@@ -1,41 +1,41 @@
-type OperatorNames = 'add' | 'substract' | 'divide' | 'multiply';
-
-type OperatorSymbols = '+' | '−' | '÷' | '×';
-
-type Operator = {
-    symbol: OperatorSymbols,
-    action: (a: number, b: number) => number,
-}
-
-type Operators = {
-    [key in OperatorNames]: Operator;
-}
-
-export type ExcerciseConfig = {
-    range: readonly [number, number];
-    operators?: Operator[];
-}
-
-export const operatorsData: Operators = {
+export const operatorsData = {
     add: {
         symbol: '+',
-        action: (a, b) => a + b,
+        action: (a: number, b: number) => a + b,
     },
     substract: {
         symbol: '−',
-        action: (a, b) => a - b,
+        action: (a: number, b: number) => a - b,
     },
     divide: {
         symbol: '÷',
-        action: (a, b) => a / b,
+        action: (a: number, b: number) => a / b,
     },
     multiply: {
         symbol: '×',
-        action: (a, b) => a * b,
+        action: (a: number, b: number) => a * b,
     },
-};
+} as const;
 
-const getRandomOperator = (allowedOperators: Operator[]) => {
+type OperatorKey = keyof typeof operatorsData;
+
+type OperatorData = typeof operatorsData[OperatorKey];
+
+type Operators = {
+    [key in OperatorKey]: key;
+}
+
+export const operators = Object.keys(operatorsData).reduce((data, key) => {
+    return { ...data, [key]: key };
+}, {} as Operators);
+
+
+export type ExcerciseConfig = {
+    range: [number, number];
+    operators?: OperatorKey[];
+}
+
+const getRandomOperator = (allowedOperators: OperatorData[]) => {
     const rand = Math.round(Math.random() * (allowedOperators.length - 1));
 
     return allowedOperators[rand];
@@ -61,9 +61,15 @@ const getDivisionOrderedRandomNumbers = (from: number, to: number) => {
     return [result, randomPair[randomNumbersIndex]];
 };
 
-export const generateExcercise = ({ range, operators: allowedOperators = Object.values(operatorsData) }: ExcerciseConfig) => {
-    const [minNumber, maxNumber] = range;
-    const operator = getRandomOperator(allowedOperators);
+export const generateExcercise = ({ range, operators = [] }: ExcerciseConfig) => {
+    const selectedoperators = operators.map((key) => operatorsData[key]);
+
+    if (selectedoperators.length === 0) {
+        return;
+    }
+
+    const [minNumber, maxNumber] = range.sort();
+    const operator = getRandomOperator(selectedoperators);
     const isDivision = operator.symbol === operatorsData.divide.symbol;
     // Division require specific numbers for NOT getting decimal point results (e.g. 7 / 5).
     const [firstNumber, secondNumber] = isDivision ? getDivisionOrderedRandomNumbers(minNumber, maxNumber) : getOrderedRandomPair(minNumber, maxNumber);

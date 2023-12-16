@@ -2,12 +2,14 @@ import { FC, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
 
-import useExcercises, { operatorsData } from "../../hooks/useExcercises";
+import useExcercises from "../../hooks/useExcercises";
 import Keys, { KeyValue, SUBMIT_VALUE, DELETE_VALUE, NEGATIVE_VALUE } from './components/Keys';
+import useStore from '../../hooks/useStore';
 
 const Practice: FC = () => {
     const navigate = useNavigate();
-    const { excercise, index, total, next } = useExcercises({ range: [1, 10], operators: [operatorsData.add] });
+    const [state] = useStore();
+    const { excercise, index, total, next } = useExcercises({ range: [1, 10], operators: state.operators });
     const { firstNumber, secondNumber, symbol, expected } = excercise;
     const [isWrong, setIsWrong] = useState(false);
     const [isRevealed, setIsRevealed] = useState(false);
