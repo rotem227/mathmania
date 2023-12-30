@@ -15,7 +15,7 @@ const getInitialValue = () => {
 
     return {
         operators: [add, substract, multiply, divide],
-        range: [1, 3]
+        range: [1, 10]
     } as StoreData;
 };
 
