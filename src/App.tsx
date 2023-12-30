@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Theme } from 'react-daisyui';
 
 import Home from './pages/home';
 import Practice from './pages/practice';
@@ -36,7 +37,9 @@ const router = createBrowserRouter([
 
 const App: FC = () => {
   return (
-    <RouterProvider router={router} />
+    <Theme dataTheme='dark'>
+      <RouterProvider router={router} />
+    </Theme>
   )
 }
 

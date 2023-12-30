@@ -17,6 +17,7 @@ const useExcercises = ({ range, operators }: ExcerciseConfig) => {
         excercise: excercises[index],
         index,
         total: excercises.length,
+        isCompleted: index + 1 === excercises.length,
     };
 };
 

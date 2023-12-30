@@ -9,7 +9,7 @@ const Home: FC = () => {
 
     return (
         <div className="flex flex-col gap-6 text-center">
-            <h1 className="text-5xl font-bold">Lets Practice!</h1>
+            <h1 className="text-5xl font-bold">Let's Practice!</h1>
 
             {
                 state.operators.length === 0 && (

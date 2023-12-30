@@ -1,54 +1,73 @@
-import { FC } from "react";
+import { FC, ComponentProps } from "react";
 import clsx from 'clsx';
+import { Kbd, KbdProps } from 'react-daisyui';
 
 export const SUBMIT_VALUE = 'submit';
 export const DELETE_VALUE = 'delete';
-export const NEGATIVE_VALUE = '+/-';
+export const OPPOSITE_VALUE = '+/-';
 export const DECIMAL_VALUE = '.';
 
-const keyboardValues = [
-    7,
-    8,
-    9,
-    4,
-    5,
-    6,
-    1,
-    2,
-    3,
-    NEGATIVE_VALUE,
-    0,
-    DECIMAL_VALUE,
-] as const;
+const keyboardValues = [7, 8, 9, 4, 5, 6, 1, 2, 3, OPPOSITE_VALUE, 0, DECIMAL_VALUE] as const;
 
-export type KeyValue = typeof keyboardValues[number] | typeof DELETE_VALUE | typeof SUBMIT_VALUE;
+export type KeyValue = typeof keyboardValues[number];
 
-const KeyButton: FC<JSX.IntrinsicElements['kbd']> = ({ className, children, ...props }) => {
+const KeyButton: FC<KbdProps> = ({ className, children, ...props }) => {
     return (
-        <kbd {...props} className={clsx('kbd kbd-lg cursor-pointer active:border-info transition-colors', className)}>
+        <Kbd size="lg" {...props} className={clsx('cursor-pointer active:border-info transition-colors', className)}>
             {children}
-        </kbd>
+        </Kbd>
     );
 };
 
-type Props = {
-    onClick: (arg: KeyValue) => void;
-    className?: string;
+type Props = ComponentProps<'div'> & {
+    onPress: () => void;
+    onValue: (arg: KeyValue) => void;
+    onSubmit: () => void;
+    onDelete: () => void;
+    onOpposite: () => void;
 }
 
-const Keys: FC<Props> = ({ onClick, className }) => {
+const Keys: FC<Props> = ({ onPress, onValue, onSubmit, onDelete, onOpposite, className }) => {
+    const handleKey = (value: KeyValue) => {
+        onPress();
+
+        if (value === OPPOSITE_VALUE) {
+            onOpposite();
+        } else {
+            onValue(value);
+        }
+    };
+
     return (
         <div className={className}>
             <div className="grid grid-cols-3 gap-3 my-1 w-full">
                 {
                     keyboardValues.map((value) => (
-                        <KeyButton key={'key' + value} onClick={() => onClick(value)}>{value}</KeyButton>
+                        <KeyButton key={'key' + value} onClick={() => handleKey(value)}>{value}</KeyButton>
                     ))
                 }
             </div>
+
             <div className="grid grid-cols-2 gap-3 my-3 w-full">
-                <KeyButton onClick={() => onClick(DELETE_VALUE)} className="text-warning">DELETE</KeyButton>
-                <KeyButton onClick={() => onClick(SUBMIT_VALUE)} className="text-success">SUBMIT</KeyButton>
+                <KeyButton
+                    className="text-warning"
+                    onClick={() => {
+                        onPress();
+                        onDelete();
+                    }}
+                >
+                    DELETE
+                </KeyButton>
+
+                <KeyButton
+                    className="text-success"
+                    onClick={() => {
+                        onPress();
+                        onSubmit();
+                    }}
+                >
+                    SUBMIT
+                </KeyButton>
             </div>
         </div>
     )
