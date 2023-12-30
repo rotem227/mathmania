@@ -1,3 +1,3 @@
 # MATHMANIA
 
-Demo: [math-mania.netlify.app/](https://math-mania.netlify.app/)
+[Demo](https://math-mania.netlify.app/){:target="_blank"}
