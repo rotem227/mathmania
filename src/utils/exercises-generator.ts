@@ -30,7 +30,7 @@ export const operators = Object.keys(operatorsData).reduce((data, key) => {
 }, {} as Operators);
 
 
-export type ExcerciseConfig = {
+export type ExerciseConfig = {
     range: [number, number];
     operators: OperatorKey[];
 }
@@ -63,7 +63,7 @@ const getDivisionOrderedRandomNumbers = (from: number, to: number) => {
 
 const { add, substract, multiply, divide } = operators;
 
-export const generateExcercise = ({ range, operators = [add, substract, multiply, divide] }: ExcerciseConfig) => {
+const generateExercise = ({ range, operators = [add, substract, multiply, divide] }: ExerciseConfig) => {
     const [minNumber, maxNumber] = range.sort();
     const selectedoperators = operators.map((key) => operatorsData[key]);
     const operator = getRandomOperator(selectedoperators);
@@ -80,4 +80,10 @@ export const generateExcercise = ({ range, operators = [add, substract, multiply
         secondNumber,
         expected: action(firstNumber, secondNumber),
     };
+};
+
+export const generateExercises = (amount: number, { range, operators }: ExerciseConfig) => {
+    const exercises = Array(amount).fill(true).map(() => generateExercise({ range, operators }));
+
+    return exercises;
 };

@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import useStore from '../../hooks/useStore';
-import { operators, OperatorKey } from '../../utils/excercises-generator';
+import { operators, OperatorKey } from '../../utils/exercises-generator';
 
 const { add, substract, multiply, divide } = operators;
 

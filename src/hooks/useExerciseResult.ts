@@ -5,7 +5,7 @@ type Props = {
     expected: number;
 }
 
-const useExcerciseResult = ({ onValidResult, expected }: Props) => {
+const useExerciseResult = ({ onValidResult, expected }: Props) => {
     const [result, setResult] = useState('');
     const [isWrong, setIsWrong] = useState(false);
     const [isRevealed, setIsRevealed] = useState(false);
@@ -57,4 +57,4 @@ const useExcerciseResult = ({ onValidResult, expected }: Props) => {
     };
 };
 
-export default useExcerciseResult;
+export default useExerciseResult;

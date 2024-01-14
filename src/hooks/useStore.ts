@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import { operators, ExcerciseConfig } from '../utils/excercises-generator';
+import { operators, ExerciseConfig } from '../utils/exercises-generator';
 
 type StoreData = {
     history?: any;
-} & ExcerciseConfig
+} & ExerciseConfig
 
 const getInitialValue = () => {
     const data = getStorageData();

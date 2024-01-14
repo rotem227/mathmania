@@ -4,20 +4,20 @@ import clsx from 'clsx';
 import { Button } from 'react-daisyui';
 
 import useStore from '../../hooks/useStore';
-import useExcercises from "../../hooks/useExcercises";
+import useExercises from "../../hooks/useExcercises";
 import EndedMessage from './components/EndedMessage';
 import Keys from './components/Keys';
 import ExcerciseValueInput from './components/ExcerciseValueInput';
 import ExcerciseDisplay from './components/ExcerciseDisplay';
 import ExcerciseCounter from './components/ExcerciseCounter';
-import useExcerciseResult from '../../hooks/useExcerciseResult';
+import useExerciseResult from '../../hooks/useExerciseResult';
 
 const Practice: FC = () => {
     const navigate = useNavigate();
     const [state] = useStore();
-    const { excercise, index, total, next, isCompleted } = useExcercises({ range: state.range, operators: state.operators });
+    const { excercise, index, total, next, isCompleted } = useExercises({ range: state.range, operators: state.operators });
     const { firstNumber, secondNumber, symbol, expected } = excercise;
-    const { result, isWrong, isRevealed, reveal, append, validate, modify, reset } = useExcerciseResult({ onValidResult: next, expected });
+    const { result, isWrong, isRevealed, reveal, append, validate, modify, reset } = useExerciseResult({ onValidResult: next, expected });
 
     return (
         <>

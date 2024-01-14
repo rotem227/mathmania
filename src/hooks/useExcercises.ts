@@ -1,24 +1,28 @@
 import { useState, useMemo } from 'react';
-import { generateExcercise, ExcerciseConfig } from '../utils/excercises-generator';
+import { generateExercises, ExerciseConfig } from '../utils/exercises-generator';
 
-export { operators } from '../utils/excercises-generator';
+export { operators } from '../utils/exercises-generator';
 
-const useExcercises = ({ range, operators }: ExcerciseConfig) => {
+const useExercises = ({ range, operators }: ExerciseConfig, exercisesNumber = 10) => {
     const [index, setIndex] = useState(0);
-    const excercises = useMemo(() => {
-        return Array(10).fill(true).map(() => generateExcercise({ range, operators }));
-    }, []);
+    const exercises = useMemo(() => generateExercises(exercisesNumber, { range, operators }), []);
 
-    const next = () => setIndex((prev) => ++prev);
+    const next = () => setIndex((prev) => {
+        if (prev === exercisesNumber - 1) {
+            return prev;
+        }
+
+        return ++prev;
+    });
 
     return {
         next,
-        excercises,
-        excercise: excercises[index],
+        exercises,
+        excercise: exercises[index],
         index,
-        total: excercises.length,
-        isCompleted: index + 1 === excercises.length,
+        total: exercises.length,
+        isCompleted: index + 1 === exercises.length,
     };
 };
 
-export default useExcercises;
+export default useExercises;
